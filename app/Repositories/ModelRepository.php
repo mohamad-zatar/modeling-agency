@@ -10,5 +10,4 @@ class ModelRepository extends BaseRepository
     {
         parent::__construct($model);
     }
-
 }

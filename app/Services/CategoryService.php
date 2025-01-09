@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Services;
+
 use App\Repositories\CategoryRepository;
+
 class CategoryService
 {
     protected $categoryRepository;
@@ -15,6 +17,7 @@ class CategoryService
     {
         return $this->categoryRepository->all()->load('parent');
     }
+
     public function getAllCategoriesWithHierarchy()
     {
         return $this->categoryRepository->all()->whereNull('parent_id')->load('children');
@@ -37,6 +40,6 @@ class CategoryService
 
     public function deleteCategory($id)
     {
-         $this->categoryRepository->delete($id);
+        $this->categoryRepository->delete($id);
     }
 }

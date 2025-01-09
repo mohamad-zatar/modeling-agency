@@ -26,35 +26,42 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->getAllCategoriesWithHierarchy();
+
         return CategoryResource::collection($categories);
     }
+
     public function indexFlat()
     {
         $categories = $this->categoryService->getAllCategories();
+
         return CategoryResource::collection($categories);
     }
 
     public function show($id)
     {
         $category = $this->categoryService->getCategoryById($id);
+
         return new CategoryResource($category);
     }
 
     public function store(StoreCategoryRequest $request)
     {
         $category = $this->categoryService->createCategory($request->validated());
+
         return new CategoryResource($category);
     }
 
     public function update(UpdateCategoryRequest $request, $id)
     {
         $category = $this->categoryService->updateCategory($id, $request->validated());
+
         return new CategoryResource($category);
     }
 
     public function destroy($id)
     {
         $this->categoryService->deleteCategory($id);
+
         return response()->json('Successfully Deleted');
     }
 }
